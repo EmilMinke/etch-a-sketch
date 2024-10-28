@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+#gridContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allow squares to wrap into a new row */
+    width: 640px; /* Adjust the total width of the grid */
+}
+
+.square {
+    width: 40px; /* Each square size */
+    height: 40px; /* Each square size */
+    border: 1px solid #ccc; /* Border for each square */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    background-color: white; /* Background color for squares */
+    transition: background-color 0.3s; /* Smooth transition for color change */
+}
+
+.square:hover {
+    background-color: #4CAF50; /* Change color on hover */
+}
