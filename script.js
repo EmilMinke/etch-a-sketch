@@ -1,17 +1,23 @@
 const gridContainer = document.getElementById("gridContainer");
 
-for (let i = 0; i < 256; i++) {
-    const square = document.createElement("div");
-    square.className = "square";
+function createGrid(size) {
+    gridContainer.innerHTML = ""; // Clear existing grid
+    const totalSquares = size * size;
+    const squareSize = 960 / size; // Calculate size of each square
 
-    square.addEventListener("mouseover", function() {
-        this.style.backgroundColor = getRandomColor(); // Change the square color
-    });
-
-    gridContainer.appendChild(square);
+    for (let i = 0; i < totalSquares; i++) {
+        const square = document.createElement("div");
+        square.classList.add("square");
+        square.style.width = `${squareSize}px`;
+        square.style.height = `${squareSize}px`;
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = getRandomColor();
+        });
+        gridContainer.appendChild(square);
+    }
 }
 
-// helper function to get a random color
+// Function to get a random color
 function getRandomColor() {
     const hexSymbols = "0123456789ABCDEF";
     let hexColor = "#";
@@ -20,3 +26,21 @@ function getRandomColor() {
     }
     return hexColor;
 }
+
+function changeGridSize() {
+    let input = prompt("Enter the number of squares per side (1 to 100):");
+    let size = parseInt(input);
+
+    // Validate input
+    if (isNaN(size) || size < 1 || size > 100) {
+        alert("Please enter a valid number between 1 and 100.")
+    } else {
+        createGrid(size);
+    }
+}
+
+// Attach event listener to the button
+document.getElementById("gridButton").addEventListener("click", changeGridSize);
+
+// Create the initial grid
+createGrid(16);

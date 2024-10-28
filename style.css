@@ -1,27 +1,26 @@
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
 }
 
 #gridContainer {
     display: flex;
     flex-wrap: wrap; /* Allow squares to wrap into a new row */
-    width: 640px; /* Adjust the total width of the grid */
+    width: 960px; /* fixed width */
 }
 
 .square {
-    width: 40px; /* Each square size */
-    height: 40px; /* Each square size */
     border: 1px solid #ccc; /* Border for each square */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
+    width: calc(960px / 16); /* Initial size (16x16) */
+    height: calc(960px / 16); /* Initial size (16x16) */
     background-color: white; /* Background color for squares */
     transition: background-color 0.3s; /* Smooth transition for color change */
 }
 
-.square:hover {
-    background-color: #4CAF50; /* Change color on hover */
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
 }
