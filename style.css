@@ -15,8 +15,7 @@ body {
     box-sizing: border-box; /* Include padding and border in element's total width and height */
     width: calc(960px / 16); /* Initial size (16x16) */
     height: calc(960px / 16); /* Initial size (16x16) */
-    background-color: white; /* Background color for squares */
-    transition: background-color 0.3s; /* Smooth transition for color change */
+    transition: background-color 0.3s ease, opacity 0.2s ease; /* Smooth transition for color change */
 }
 
 button {

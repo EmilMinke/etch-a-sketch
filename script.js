@@ -10,21 +10,39 @@ function createGrid(size) {
         square.classList.add("square");
         square.style.width = `${squareSize}px`;
         square.style.height = `${squareSize}px`;
+
+        // Initialize darkening effect data
+        square.interactionCount = 0; // Initialize interaction count
+        square.rgbColor = getRandomRGBValues();
+
         square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = getRandomColor();
+            // Darken RGB values by 10% each hover
+            if (square.interactionCount < 10) {
+                square.rgbColor = darkenColor(square.rgbColor, 0.1);
+                square.style.backgroundColor = `rgb(${square.rgbColor.r}, ${square.rgbColor.g}, ${square.rgbColor.b})`;
+                square.interactionCount++;
+            }
         });
         gridContainer.appendChild(square);
     }
 }
 
-// Function to get a random color
-function getRandomColor() {
-    const hexSymbols = "0123456789ABCDEF";
-    let hexColor = "#";
-    for (let i = 0; i < 6; i++) {
-        hexColor += hexSymbols[Math.floor(Math.random() * 16)];
-    }
-    return hexColor;
+// Function to get random RGB values
+function getRandomRGBValues() {
+    return {
+        r: Math.floor(Math.random() * 256),
+        g: Math.floor(Math.random() * 256),
+        b: Math.floor(Math.random() * 256)
+    };
+}
+
+// Darken color by reducing each RGB component by percentage
+function darkenColor(color, percentage) {
+    return {
+        r: Math.floor(color.r * (1 - percentage)),
+        g: Math.floor(color.g * (1 - percentage)),
+        b: Math.floor(color.b * (1 - percentage))
+    };
 }
 
 function changeGridSize() {
